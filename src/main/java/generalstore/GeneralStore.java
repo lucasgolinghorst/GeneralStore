@@ -15,7 +15,8 @@ public class GeneralStore {
         return bankAccount;
     }
 
-    public void sell(Product product) {
-        bankAccount.setMoney(bankAccount.getMoney() + product.getPrice());
+    public void sellProduct(Product product) {
+        double moneyMade = product.getPrice();
+        bankAccount.setMoney(bankAccount.getMoney() + moneyMade);
     }
 }

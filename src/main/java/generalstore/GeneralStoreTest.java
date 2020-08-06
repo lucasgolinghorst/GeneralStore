@@ -81,7 +81,7 @@ public class GeneralStoreTest {
     public void sellAnItemAndCheckMoneyIsDeducted() {
         double money = bankAccount.getMoney();
         Product chips = new Product("chips");
-        store.sell(chips);
+        store.sellProduct(chips);
         Assert.assertEquals(money + 1.0, bankAccount.getMoney(), 0);
     }
 }

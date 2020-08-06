@@ -10,10 +10,11 @@ public class GeneralStoreTest {
 
     private List<Product> products;
     private BankAccount bankAccount;
+    private GeneralStore store;
 
     @Before
     public void Setup() {
-        GeneralStore store = new GeneralStore();
+        store = new GeneralStore();
         products = store.getProducts();
         bankAccount = store.getBankAccount();
     }
@@ -68,5 +69,19 @@ public class GeneralStoreTest {
     public void getHotDogPrice() {
         Product hotDog = new Product("hot dog");
         Assert.assertEquals(2.0, hotDog.getPrice(), 0);
+    }
+
+    @Test
+    public void getBurgerPrice() {
+        Product burger = new Product("burger");
+        Assert.assertEquals(3.0, burger.getPrice(), 0);
+    }
+
+    @Test
+    public void sellAnItemAndCheckMoneyIsDeducted() {
+        double money = bankAccount.getMoney();
+        Product chips = new Product("chips");
+        store.sell(chips);
+        Assert.assertEquals(money + 1.0, bankAccount.getMoney(), 0);
     }
 }

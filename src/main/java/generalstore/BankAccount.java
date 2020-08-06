@@ -4,8 +4,8 @@ public class BankAccount {
 
     private double money;
 
-    public BankAccount(double startingMoney) {
-        money = startingMoney;
+    public BankAccount(double money) {
+        this.money = money;
     }
 
     public BankAccount() {
@@ -14,5 +14,9 @@ public class BankAccount {
 
     public double getMoney() {
         return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
     }
 }

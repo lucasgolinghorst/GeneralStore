@@ -14,4 +14,8 @@ public class GeneralStore {
     public BankAccount getBankAccount() {
         return bankAccount;
     }
+
+    public void sell(Product product) {
+        bankAccount.setMoney(bankAccount.getMoney() + product.getPrice());
+    }
 }

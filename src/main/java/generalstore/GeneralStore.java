@@ -4,8 +4,13 @@ import java.util.ArrayList;
 
 public class GeneralStore {
 
-    ArrayList<Product> products = new ArrayList<>();
-    BankAccount bankAccount = new BankAccount();
+    ArrayList<Product> products;
+    BankAccount bankAccount;
+
+    public GeneralStore() {
+        products = new ArrayList<>();
+        bankAccount = new BankAccount();
+    }
 
     public ArrayList<Product> getProducts() {
         return products;
@@ -16,7 +21,14 @@ public class GeneralStore {
     }
 
     public void sellProduct(Product product) {
-        double moneyMade = product.getPrice();
-        bankAccount.setMoney(bankAccount.getMoney() + moneyMade);
+        if (products.remove(product)) {
+            double moneyMade = product.getPrice();
+            bankAccount.setMoney(bankAccount.getMoney() + moneyMade);
+        } else
+            System.out.println("No such item in stock");
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
     }
 }

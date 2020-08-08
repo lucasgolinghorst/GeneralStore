@@ -4,7 +4,11 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class GeneralStoreTest {
 
@@ -12,6 +16,8 @@ public class GeneralStoreTest {
     private GeneralStore store;
     private Product chips;
     private Product drink;
+    private Product hotDog;
+    private Product burger;
 
     @Before
     public void Setup() {
@@ -19,6 +25,8 @@ public class GeneralStoreTest {
         bankAccount = store.getBankAccount();
         chips = new Chips();
         drink = new Drink();
+        hotDog = new HotDog();
+        burger = new Burger();
     }
 
     @Test
@@ -38,7 +46,7 @@ public class GeneralStoreTest {
 
     @Test
     public void addProduct() {
-        store.addProduct(new Chips());
+        store.addProduct(chips);
         assertEquals(1, store.getProducts().size());
     }
 
@@ -54,13 +62,11 @@ public class GeneralStoreTest {
 
     @Test
     public void getHotDogPrice() {
-        Product hotDog = new HotDog();
         assertEquals(2.0, hotDog.getPrice(), 0);
     }
 
     @Test
     public void getBurgerPrice() {
-        Product burger = new Burger();
         assertEquals(3.0, burger.getPrice(), 0);
     }
 
@@ -86,5 +92,34 @@ public class GeneralStoreTest {
         store.sellProduct(chips);
         //money should not change, line should be printed
         assertEquals(money, bankAccount.getMoney(), 0);
+    }
+
+    @Test
+    public void twoOfSameProduct() {
+        store.addProduct(chips);
+        store.addProduct(chips);
+        store.sellProduct(chips);
+        assertEquals(1, store.getProducts().size());
+        assertTrue(store.getProducts().contains(chips));
+    }
+
+    @Test
+    public void getNumberProductsByType() {
+        store.addProduct(chips);
+        store.addProduct(chips);
+        store.addProduct(drink);
+        store.addProduct(drink);
+        store.addProduct(drink);
+        assertEquals(2, store.numberOfType(chips));
+        assertEquals(3, store.numberOfType(drink));
+    }
+
+    @Test
+    public void makeProducts() {
+        List<Product> products = new ArrayList<>();
+        products.add(chips);
+        products.add(drink);
+        store.setProducts(products);
+        assertEquals(products, store.getProducts());
     }
 }

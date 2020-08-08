@@ -4,10 +4,6 @@ public class BankAccount {
 
     private double money;
 
-    public BankAccount(double money) {
-        this.money = money;
-    }
-
     public BankAccount() {
         money = 20.00;
     }

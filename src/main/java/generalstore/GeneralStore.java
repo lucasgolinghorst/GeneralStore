@@ -1,10 +1,11 @@
 package generalstore;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GeneralStore {
 
-    ArrayList<Product> products;
+    List<Product> products;
     BankAccount bankAccount;
 
     public GeneralStore() {
@@ -12,7 +13,7 @@ public class GeneralStore {
         bankAccount = new BankAccount();
     }
 
-    public ArrayList<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
@@ -30,5 +31,19 @@ public class GeneralStore {
 
     public void addProduct(Product product) {
         products.add(product);
+    }
+
+    public int numberOfType(Product product) {
+        int count = 0;
+        for (Product each : products) {
+            if (each.equals(product)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
